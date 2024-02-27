@@ -1,0 +1,50 @@
+APIs
+
+//APIs (do inglês, Application Programming Interfaces), 
+//segundo o MDN, “são construções disponíveis nas linguagens de programação
+// que permitem a desenvolvedores criar funcionalidades complexas com mais facilidade.
+// Tais construções abstraem o código mais complexo, proporcionando o uso de sintaxes mais simples em seu lugar”.
+
+//Facilita a troca de informações;
+//API interna e externa;
+//Para adicionar alguns recursos em aplicações web, como o envio de notificações, por exemplo, 
+//teríamos que conhecer profundamente sobre o funcionamento do navegador. 
+//No entanto, existe uma API, disponível no próprio navegador, que nos permite implementar esse recurso utilizando poucas linhas de código.
+
+
+//É importante destacar que as APIs dos navegadores são baseadas na linguagem JavaScript, já que esta é a linguagem executada nos browsers.
+//Falamos sobre algumas APIs dos navegadores, mas existe ainda outra que é fundamental na integração do JavaScript com o HTML e,
+// portanto, estudaremos ela com mais profundidade neste primeiro momento: a API DOM.
+
+//DOM: Document Object Model
+//Trata-se de uma API que favorece a representação de documentos HTML ou XML em nós e objetos,
+// permitindo que toda a estrutura de uma página HTML, por exemplo, possa ser acessada por meio de um objeto do JavaScript e,
+// dessa forma, o conteúdo ou estilos possam ser alterados por meio de um script.
+
+//Em outras palavras, o que o DOM faz é representar uma página web de uma forma que ela possa ser modificada. 
+//Ele é uma representação orientada a objetos da página da web, que pode ser modificada com uma linguagem de script como JavaScript. 
+//Essa representação é estruturada como uma árvore e, por isso, é comum você escutar o termo "a árvore de elementos do DOM".
+
+//Para toda página web contida em navegador, existe um objeto document que a representa.
+// É a partir desse objeto que poderemos acessar todos os elementos da página, assim como poderemos alterar o conteúdo/estilos dela.
+// Dentro de qualquer script JS que esteja rodando no navegador, é possível acessar o objeto document.
+
+//Além disso, é possível acessar o objeto document a partir do console do navegador.
+// Para verificar, na prática, que esse objeto corresponde a todo o conteúdo da página,
+// você pode digitar document dentro do console do seu navegador e deverá notar que todo o conteúdo ficará em destaque.
+
+//Para que você possa visualizar todos os atributos do objeto document, basta ir no console do navegador e digitar console.dir(document),
+// e expandir o resultado que será exibido.
+
+//Existem muitos atributos dentro desse objeto. Vamos conhecer alguns deles:
+
+//document.title: Contém o título da página.
+//document.URL: Contém uma string com a URL (o link) da página.
+//document.images: Contém um HTMLCollection (pode considerar como um array de elementos HTML) com as imagens presentes na página.
+//document.forms: Contém um HTMLCollection com os formulários presentes na página.
+//document.head: Contém todo o conteúdo HTML que está no interior da tag head.
+//document.body: Contém todo o conteúdo HTML que está no interior da tag body.
+//Temos ainda muitos outros atributos e métodos dentro desse objeto,
+// mas acredito que com essa introdução já ficou mais claro para você como o DOM vai nos auxiliar a interagir com o HTML 
+//por meio do JavaScript. No próximo tópico, veremos como acessar, adicionar, alterar e remover elementos específicos do HTML, 
+//utilizando o objeto document que conhecemos aqui. 

@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
+
+body {
+    background: rgb(252,252,252);
+    background: linear-gradient(90deg, rgba(252,252,252,0) 0%, rgba(128,108,108,1) 0%, rgba(229,212,226,1) 47%, rgba(172,171,171,1) 100%, rgba(255,196,0,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha no topo */
+    align-items: flex-start; /* Inicia da esquerda */
+    height: 100vh; /* Ocupa 100% da altura da tela */
+    margin: 0; /* Remove margens padrão do corpo */
+    padding: 10px; /* Adiciona algum espaço para evitar que os elementos fiquem muito próximos às bordas */
+}
+
+#search {
+    padding: 10px;
+    margin-bottom: 5px; /* Adicionado para separar do botão de busca */
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-left: 5px; /* Espaçamento entre o ícone e o input */
+}
+
+.search-container {
+    margin-top: 10px; 
+}
+
+.search-container label {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+
+.search-container {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+/* Mudar a cor do ícone */
+.fa-magnifying-glass {
+    color: white; /* Substitua #ff0000 pela cor desejada */
+    font-size: 25px; /* Substitua 24px pelo tamanho desejado */
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 32px;
+}
+
+.container {
+    width: 100%;
+    margin: 0;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-wrapper > h1 {
+    color:  #ffffff;
+}
+
+.logo-wrapper > img {
+    margin-right: 16px;
+}
+
+.poke-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+
+.poke-container .pokemon {
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.6);
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.poke-container .pokemon .img-container {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    position: relative;
+}
+
+.poke-container .pokemon .img-container img {
+    width: 90%;
+    margin-top: 20px;
+}
+
+.poke-container .pokemon .info {
+    margin-top: 20px;
+}
+
+.poke-container .pokemon .info .number {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: .8em;
+}
+
+.poke-container .pokemon .info .name {
+    margin: 15px 0 7px;
+    letter-spacing: 1px;
+}
+
+#favorites-button {
+    position:absolute; /* Fixa o botão no canto superior direito */
+    margin-top: 50px; /* Distância do topo da página */
+    right: 8px; /* Distância da direita da página */
+    border-radius: 10px; /* Deixa o botão arredondado */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    cursor: pointer;
+}
+
+.favorite {
+    position: absolute;
+    top: 1px;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+} 
+
+
+#favorites-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+#favorites-modal-content {
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#favorites-modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#favorites-modal-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#close-modal {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#close-modal:hover,
+#close-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.remove-button {
+    color: red; /* Muda a cor do ícone para vermelho */
+    margin-left: 10px; /* Adiciona um espaço à esquerda do botão */
+}
+

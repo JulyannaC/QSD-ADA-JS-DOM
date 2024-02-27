@@ -1,0 +1,234 @@
+<!-- MANIPULAÇÃO DE DOM -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manipulando o DOM</title>
+    </head>
+    <body style="padding: 0 1rem">
+    <h1>Manipulando o DOM</h1>
+
+    <p class="paragraph">
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti minus
+    eum fugit cum quos molestias esse perferendis, maiores vitae maxime quidem
+    voluptates facilis non porro ad aspernatur eveniet officiis. Distinctio?
+    </p>
+
+    <p class="paragraph">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos, laborum,
+        perspiciatis est nihil in inventore voluptates velit ut eveniet veniam
+        possimus earum atque, quod explicabo rem rerum! Amet, blanditiis placeat?
+    </p>
+
+    <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1024px-Unofficial_JavaScript_logo_2.svg.png"
+        alt="Logo do JavaScript"
+        width="150"
+        class="logo"
+    />
+
+    <p class="paragraph after-img">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptas
+        velit earum consequatur fuga excepturi voluptates neque ipsum, voluptate
+        tenetur ea error optio! Provident magnam repellendus est quisquam qui
+        magni.
+    </p>
+
+    <section style="margin-top: 2rem" id="form-section">
+        <h2>Formulário</h2>
+        <form style="margin-top: 0.5rem">
+        <label for="course">Curso:</label>
+        <input id="course" name="course" type="course" />
+        </form>
+    </section>
+    </body>
+</html>
+
+<!-- Seletores: Obtendo elementos do DOM -->
+
+<!-- 1. document.getElementsByTagName(nomeDaTag)
+O primeiro método que iremos conhecer é o getElementsByTagName.
+Ele nos permite obter elementos HTML a partir do nome da tag.
+Portanto, você deve passar o nome da tag como parâmetro (no formato string).
+
+Na nossa página de exemplo, podemos obter todos os parágrafos utilizando o document.getElementsByTagName('p'). -->
+
+<!-- Caso não seja encontrado nenhum elemento com o tag name especificado,
+o retorno da função será um HTMLCollection (um array de elementos HTML) vazio.
+
+2. document.getElementsByClassName(nomeDaClasse)
+O método getElementsByClassName é muito parecido com o anterior.
+A diferença está no fato de que, nesse caso, estamos obtendo elementos pelo nome da classe.
+Sendo assim, você deve passar o nome da classe que está presente na tag como parâmetro (no formato string).
+
+Na nossa página de exemplo, podemos obter todos os parágrafos utilizando o document.getElementsByClassName('paragraph').  -->
+
+<!-- 3. document.getElementById(id)
+Este método recebe um id (como string) e retorna o elemento HTML que contém o id especificado.
+Na nossa página de exemplo, poderíamos obter o conteúdo da tag section fazendo document.getElementById('form-section').
+Caso o id passado como parâmetro não esteja presente no documento, a função irá retornar null.
+
+💡 Notou que esse método é no singular, ao invés do plural (como eram os anteriores)? 
+Isso se deve ao fato de que `id` deve ser único em cada elemento HTML.
+
+4. document.getElementsByName(name)
+Este método é bem similar aos métodos getElementsByTagName e getElementsByClassName,
+que vimos anteriormente, porém, nesse caso, o método deve receber o conteúdo da propriedade name da tag.
+Essa propriedade é comumente utilizada em elementos de formulários HTML.
+
+Observe que temos essa propriedade sendo utilizada no input da nossa página de exemplo. 
+Sendo assim, podemos obter o nosso elemento input utilizando o comando document.getElementsByName('course').
+
+5. document.querySelector(seletor) e document.querySelectorAll(seletor)
+O método querySelector é um dos mais utilizados quando se deseja obter um elemento HTML específico da página. 
+Nele devemos passar um seletor no estilo CSS como parâmetro e, com isso, o elemento será buscado na página.
+
+Voltando à nossa página de exemplo, podemos obter a tag section, utilizando o comando document.querySelector('section#form-section’).
+Note que estamos sendo mais específicos nessa seleção, e essa é grande vantagem do querySelector: com ele podemos ser mais específicos na busca por elementos HTML.
+
+Podemos obter o último parágrafo da página de exemplo por meio do comando document.querySelector('p.paragraph.after-img'). 
+Ou seja, estamos obtendo a tag p que possui uma class paragraph e, ao mesmo tempo, a class after-img.
+
+💡 No caso da nossa página de exemplo, o mesmo resultado seria obtido com o comando `document.querySelector('.after-img')`, concorda?
+Um ponto importante é que, por ter a proposta de ser bem específico, esse método retorna apenas o primeiro elemento HTML que se enquadre no seletor especificado.
+Caso tenha interesse de obter vários elementos, utilize o método querySelectorAll.
+
+OBS.: Uma importante vantagem do querySelectorAll é o fato de que ele retorna um NodeList, 
+que nos permite iterar sobre os seus elementos utilizando um forEach. O mesmo não é válido para o HTMLCollection. -->
+
+
+Alterando o conteúdo dos elementos HTML
+
+1. element.textContent
+O atributo textContent nos permite obter o texto contido dentro do elemento. 
+Mesmo que haja outras tags dentro dele, o textContent irá retornar todo o conteúdo de texto contido em todas as tags filhas.
+
+No entanto, assim como podemos visualizar o texto, podemos também alterá-lo; para isso, basta fazer uma atribuição.
+O script abaixo altera o conteúdo (texto) do primeiro parágrafo da nossa página de exemplo:
+
+const primeiroParagrafo = document.querySelector('p')
+primeiroParagrafo.textContent = 'Esse é o novo conteúdo do primeiro parágrafo.'
+
+Você pode se perguntar: “Mas e se eu quiser adicionar uma parte do texto em negrito?”.
+Bom, nesse caso, adicionar uma tag strong, como mostra o código a seguir, não vai trazer esse resultado, porque ela vai ser renderizada como texto.
+
+const primeiroParagrafo = document.querySelector("p");
+primeiroParagrafo.textContent = "Esse é o <strong>novo conteúdo</strong> do
+primeiro parágrafo.";
+
+Para resolver esse problema, vejamos um outra forma de alterar o conteúdo de um elemento HTML.
+
+2. element.innerHTML
+O innerHTML retorna o conteúdo HTML contido dentro do elemento. 
+Da mesma forma que vimos para o textContent, também podemos atribuir um novo valor para o innerHTML, porém, nesse caso, o valor pode ser um conjunto de tags HTML no formato de string.
+Observe o exemplo abaixo:
+
+const primeiroParagrafo = document.querySelector("p");
+primeiroParagrafo.innerHTML = "Esse é o <strong>novo conteúdo</strong> do
+<mark>primeiro parágrafo</mark>.";
+
+3. element.value
+Para finalizar, é importante mencionarmos o atributo value. 
+Ele só existe dentro de elementos input e pode ser utilizado para obter ou definir o conteúdo da propriedade value do input.
+
+const inputName = document.querySelector('input');
+
+console.log(inputName);
+inputName.value = 23;
+
+-ADICIONANDO ELEMENTOS NA PÁGINA WEB
+
+elemento.innerHTML =
+elemento.innerHTML +
+`<div>Essa div será adicionada logo após o conteúdo que já existe no "elemento".</div>`;
+
+A partir do código acima, vemos que estamos concatenando uma div com o conteúdo que já existia dentro do elemento 
+(que pode ser qualquer elemento que você tenha selecionado com o querySelector, por exemplo).
+
+Porém, como dito anteriormente, existem vários métodos que servem para adicionar elementos. 
+Veremos os principais deles e, inclusive, teremos a oportunidade de combiná-los com outros recursos que vimos anteriormente.
+
+<body>
+    <ul id="lista">
+    <li>Aprender sobre o DOM</li>
+    <li>Entender o querySelector</li>
+    <li>Utilizar o innerHTML</li>
+    </ul>
+
+    <script>
+      // Aqui você pode inserir os códigos JS  que veremos adiante
+    </script>
+</body>
+
+Antes de aprender a inserir elementos, é importante conhecer um método para criar elementos, o createElement.
+Esse método recebe o nome da tag que se deseja criar como parâmetro.
+Uma vez criada, a tag ainda não tem conteúdo. Porém, para adicionar um conteúdo podemos utilizar o textContent ou o innerHTML
+que já vimos anteriormente.
+
+Para inserir outro item (elemento li) dentro da lista, podemos utilizar um primeiro método: appendChild.
+Considerando que se tenha um elemento criado com o createElement, por exemplo, podemos utilizar o método appendChild
+para inserir esse elemento dentro da nossa lista (ao final dela).
+
+O appendChild deve ser chamado a partir do elemento da lista (ul), conforme exemplifica o código a seguir,
+uma vez que desejamos adicionar mais um item nesse elemento ul:
+
+// Obtendo o elemento da lista (ul)
+const lista = document.querySelector("ul#lista");
+
+// Criando a tag li
+const novoItem = document.createElement("li");
+
+// Adicionando um conteúdo na tag li criada
+novoItem.textContent = "Aprender a utilizar o appendChild ✅";
+
+// Adicionando a tag li dentro da lista (ul)
+lista.appendChild(novoItem);
+
+Pronto! Dessa forma, temos mais um item ao final da lista, como ilustrado na imagem abaixo.
+
+Mas, e se você quiser adicionar o novo item na segunda posição? Bom, para isso, podemos utilizar o insertBefore.
+
+Iremos chamar o método insertBefore a partir do elemento da lista, afinal, 
+queremos adicionar um novo elemento dentro dela. 
+Esse método recebe dois parâmetros: o elemento que você deseja adicionar (que pode ter sido criado com o createElement)
+e o elemento filho acima do qual você deseja adicionar o novo elemento. 
+Para ficar mais claro, observe o exemplo abaixo:
+
+// Obtendo o elemento da lista (ul)
+const lista = document.querySelector("ul#lista");
+
+// Obtendo os elementos filhos que já existem na lista
+const itensExistentes = document.querySelectorAll("li");
+
+// Criando a tag li e adicionando conteúdo nela
+const novoItem = document.createElement("li");
+novoItem.textContent = "Aprender a utilizar o insertBefore ✅";
+
+/* Adicionando o elemento li (novoItem) dentro da lista (ul),
+antes do segundo elemento li dela. */
+lista.insertBefore(novoItem, itensExistentes[1]);
+
+Existe ainda o método insertAdjacentHTML, que é bastante flexível e você pode achá-lo interessante.
+
+REMOVENDO ELEMENTOS DA PÁGINA
+
+Para finalizar esse tópico, veremos como remover um elemento da página, utilizando o método removeChild.
+Como o próprio nome sugere, ele remove um filho do elemento. 
+Portanto, considerando a nossa lista de exemplo, podemos remover o segundo item dela utilizando o código a seguir:
+
+// Obtendo o elemento da lista (ul)
+const lista = document.querySelector("ul#lista");
+
+// Obtendo os elementos filhos que já existem na lista
+const itensExistentes = document.querySelectorAll("li");
+
+// Removendo o segundo elemento (filho) da lista
+lista.removeChild(itensExistentes[1]);
+
+
+
+
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+        <h1>Pedra, papel e tesoura</h1>
+        <div class="scoreboard">
+        <div class="player-score">
+        <p class="player">Jogador: <span id="player-score">0</span></p>
+        </div>
+        <div class="computer-score">
+        <p class="computer">Computador: <span id="computer-score">0</span></p>
+        </div>
+    </div>
+    </header>
+    <div class="choices">
+        <button class="choice" data-choice="rock">Pedra</button>
+        <button class="choice" data-choice="paper">Papel</button>
+        <button class="choice" data-choice="scissors">Tesoura</button>
+    </div>
+    <div class="result">
+        <p class="announcement"></p>
+    </div>
+    <script src="script.js"></script>
+    </body>
+</html>

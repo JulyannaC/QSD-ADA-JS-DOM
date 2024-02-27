@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <h1>Filmes de gosto duvidoso</h1>
+    <form>
+        <label for="name">Nome do filme:
+            <input id="name" type="text" />
+        </label><br>
+        <label for="year">Ano:
+            <input id="year" type="text" />
+        </label><br>
+        <label for="company">Estúdio:
+            <input id="company" type="text" />
+        </label><br>
+        <label for="genre">Gênero:
+            <input id="genre" type="text" />
+        </label><br>
+        <label for="director">Diretor:
+            <input id="director" type="text" />
+        </label>
+        <input type="submit" value="Cadastrar" onclick="addMovie(event)"/>
+    </form>
+    <div style="margin-top: 20px; margin-bottom: 20px; margin: 20px;">
+        <input type="text" id="movieId" />
+        <button onclick="deleteMovie()">Apagar Filme</button>
+    </div>
+    <div>
+        <ul id="movieList">
+
+        </ul>
+    </div>
+</body>
+</html>

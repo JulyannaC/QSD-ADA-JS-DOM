@@ -1,0 +1,278 @@
+Para exemplificar, por meio dos eventos, podemos validar os campos de um formulário para saber
+se eles foram preenchidos corretamente assim que o usuário clicar no botão Enviar
+(ou mesmo enquanto ele preenche um campo). 
+Podemos também filtrar produtos em uma página de e-commerce quando o usuário seleciona uma categoria específica.
+
+São inúmeros os exemplos que podemos citar, afinal, são vários os eventos que podem ser capturados,
+e veremos uma lista dos principais ainda nesse tópico. Agora que estamos mais contextualizados, vamos começar!
+
+-Entendendo o addEventListener
+
+Para trabalhar com eventos no JavaScript, basta selecionar um elemento do DOM (ou até mesmo todo o document)
+e "associar" um evento de determinado tipo a esse elemento. 
+Sempre que o evento associado ocorrer, uma função será disparada.
+
+A forma mais moderna de associar um evento ao elemento é utilizando o método addEventListener. 
+Esse método pode receber até três parâmetros, porém, exploraremos apenas seus dois primeiros, que são os principais.
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escuta de Eventos</title>
+    </head>
+    <body>
+    <h1>Lista de Compras</h1>
+
+    <div>
+        <input id="input" />
+        <button id="add">Adicionar</button>
+    </div>
+
+    <ul id="lista"></ul>
+
+    <script>
+        const button = document.querySelector("button");
+        button.addEventListener("click", () => {
+            window.alert("Você clicou no botão Adicionar!");
+});
+    </script>
+    </body>
+</html>
+
+A primeira linha do script nós já conhecemos bem, certo? 
+Estamos obtendo o elemento button (o botão) que está na nossa página. 
+A novidade aparece no próximo comando. Observe que estamos adicionando um "ouvinte" (ou observador, se preferir) 
+de evento no botão por meio do método addEventListener, que foi mencionado anteriormente. 
+Em outras palavras, estamos adicionando um recurso que ficará, em todo o tempo, 
+observando se o evento cadastrado foi acionado.
+
+O primeiro parâmetro é o tipo do evento. Note que adicionamos que estamos observando um evento do tipo click,
+ou seja, se ocorrer um clique sobre o elemento button, o listener dispara a ação do evento, 
+que é uma função passada como segundo parâmetro.
+
+No exemplo acima, foi passada uma arrow function, porém, você pode preferir definir a função antes 
+e passar apenas o seu nome no segundo parâmetro, como vemos no código abaixo:
+
+const button = document.querySelector("button");
+
+function showAlert() {
+    window.alert("Você clicou no botão Adicionar!");
+}
+
+button.addEventListener("click", showAlert);
+
+Nesse exemplo foi utilizada a Window API do JavaScript para emitir um alerta no navegador.
+
+Existem vários tipos de eventos que podemos passar passar no primeiro parâmetro do método addEventListener. Os principais deles são elencados na tabela abaixo:
+
+| Evento | É disparado | 
+| ---------------- | ------------------------------------------------------------------------------------------------------- | 
+| click | quando é pressionado e liberado o botão primário do mouse, trackpad, etc. | 
+| mousemove | sempre que o cursor do mouse se move. | 
+| mouseover | quando o cursor do mouse é movido sobre algum elemento. | 
+| mouseout | quando o cursor do mouse se move para fora dos limites de um elemento. | 
+| dblclick | quando acontece um clique duplo com o mouse, trackpad, etc. | 
+| DOMContentLoaded | quando o DOM do documento está totalmente carregado (mais sobre isso num tutorial futuro). | 
+| load | quando todo o documento (DOM e recursos externos como imagens, scripts, etc) está totalmente carregado. | 
+| keydown | quando uma tecla no teclado é pressionada. | 
+| keyup | quando uma tecla no teclado é liberada (depois de pressionada). | 
+| scroll | quando há “rolagem” (scroll) num elemento. | 
+| input | quando ocorre uma digitação uma caixa de texto (input, textarea) |
+
+Com relação ao segundo parâmetro do método addEventListener, 
+vimos que se trata de uma função, cujo conteúdo será executado quando o evento ocorrer. 
+Porém, é importante saber que a função recebe um único argumento, que não consideramos no nosso primeiro exemplo. 
+Esse argumento (vou chamá-lo de event arg nas próximas ocorrências) 
+consiste em um objeto que é responsável por nos trazer mais detalhes sobre o evento em si, 
+e implementa a interface [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event).
+
+Um evento disparado por um clique do mouse terá propriedades diferentes na interface do event arg,
+quando comparado a um evento disparado pela rolagem. O event arg disparado pelo evento de clique, por exemplo, 
+contém a ponto X e Y em que o usuário clicou.
+
+Dica: você pode experimentar utilizar o console.log() para visualizar todas as propriedades do event arg recebido.
+
+Embora a maioria das propriedades sejam específicas de cada tipo de evento, 
+existem algumas propriedades comuns a todos os eventos. Os atributos comuns mais importantes são:
+
+type: indica qual é o tipo do evento.
+target: contém uma referência do elemento que disparou o evento.
+
+const input = document.querySelector("input#input");
+
+input.addEventListener("input", (event) => {
+    console.log(event.target.value);
+}); 
+
+Na primeira linha do script estamos obtendo o elemento input e, no comando seguinte, 
+estamos adicionando um “observador” (listener) sobre ele. 
+Temos duas novidades nesse script: primeiro, estamos monitorando um evento do tipo input, ou seja, 
+ele será disparado sempre que a entrada mudar no elemento (no caso, o input). 
+Segundo, dessa vez estamos obtendo o event arg e salvando-o na variável event. 
+Por meio dela podemos acessar o target (elemento que disparou o evento) e, por se tratar de um elemento input, 
+sabemos que ele possui o atributo value, 
+que nos retorna o que está na propriedade value da tag (o conteúdo do input).
+
+CRIANDO A LISTA DE COMPRAS
+
+const input = document.querySelector("input#input");
+const button = document.querySelector("button");
+const lista = document.querySelector("#lista");
+
+button.addEventListener("click", (event) => {
+    lista.innerHTML += `<li>${input.value}</li>`;
+});
+
+Essa seria uma solução mais simples. 
+Apenas estamos obtendo os elementos necessários (input, button e lista) 
+e adicionamos um event listener de clique no botão. 
+Quando ocorre um clique no botão, adiciona-se uma li dentro do elemento ul (lista)
+com o conteúdo que o usuário digitou no input.
+
+Observe que foi utilizado o innerHTML para incrementar a li ao final da ul, 
+mas você pode utilizar o createElement e appendChild, se preferir.
+
+Ainda existem alguns comportamentos que poderíamos adicionar na nossa lista de compras, por exemplo:
+
+Não permitir a adição de um item vazio ou com menos de duas letras.
+Limpar o input após adicionar um item.
+Remover um item ao clicar sobre ele.
+
+O script abaixo é mais completo e incorpora todas os requisitos funcionais que foram elencados anteriormente:
+
+const input = document.querySelector("input#input");
+const button = document.querySelector("button");
+const lista = document.querySelector("#lista");
+
+button.addEventListener("click", (event) => {
+    if (input.value.length <= 2) {
+    // Lançar um alerta, caso o item tenha menos que 3 letras
+    window.alert("O item deve ter, pelo menos, 3 letras.");
+} else {
+    // Adicionando um novo item com o createElement e appendChild
+    const novoItem = document.createElement("li");
+    novoItem.textContent = input.value;
+    lista.appendChild(novoItem);
+
+    // Adicionando o event listener para remover o novo
+    // item, caso haja um clique sobre ele
+    // (veja a função removerItem abaixo)
+    novoItem.addEventListener("click", removerItem);
+
+    // Limpando o conteúdo do input quando o item é adicionado
+    input.value = "";
+}
+});
+
+// Função chamada quando o ocorre o evento de clique
+// sobre um item
+function removerItem(event) {
+    lista.removeChild(event.target);
+}
+
+DEIXANDO NOSSA LISTA DE COMPRAS MAIS COMPLETA!
+
+Seria importante deixar a nossa lista de compras mais intuitiva e, 
+para que possamos treinar os conhecimentos que estamos aprendendo e aprender novos recursos do JavaScript, 
+faremos isso nesse subtópico. 
+A ideia será criar o item, ou seja, a li da nossa lista (ul) com mais opções.
+
+Quando criarmos a li com o produto que está sendo adicionado, iremos adicionar nela mais alguns elementos:
+
+1. Um input do tipo checkbox para que o usuário possa marcar (ou desmarcar) um produto da lista como comprado.
+2. Uma span para incluir o nome do produto, ou seja, de fato o texto que o usuário digitar.
+3. E, por fim, um button que vai ter a função de remover o produto da lista. Ao invés de clicar sobre o produto
+para remover ele da lista, iremos remover apenas se clicarmos no botão.
+
+Para isso, podemos utilizar o script abaixo:
+
+const input = document.querySelector("input#input");
+const button = document.querySelector("button");
+const lista = document.querySelector("#lista");
+
+button.addEventListener("click", (event) => {
+    if (input.value.length <= 2) {
+    // Lançar um alerta, caso o item tenha menos que 3 letras
+    window.alert("O item deve ter, pelo menos, 3 letras.");
+} else {
+    // Criando uma nova li para incluir o novo produto
+    const novoItem = document.createElement("li");
+    // Criando um input (que será do tipo checkbox) para marcar o produto se o produto já foi comprado ou não
+    const checkboxItem = document.createElement("input");
+    // Criando uma span para inserir o texto do produto da lista
+    const textItem = document.createElement("span");
+    // Criando um botão para remover o produto da lista
+    const removeButtonItem = document.createElement("button");
+
+    // Adicionando o texto que o usuário digitou no texto do item (produto)
+    textItem.textContent = input.value;
+    // Adicionando um novo atributo ao checkbox
+    checkboxItem.setAttribute("type", "checkbox");
+    // Adicionando texto "Remover" no botão
+    removeButtonItem.textContent = "Remover";
+
+    // Inserindo o checkbox, o texto e o botão de remover na li (novoItem)
+    novoItem.insertAdjacentElement("beforeend", checkboxItem);
+    novoItem.insertAdjacentElement("beforeend", textItem);
+    novoItem.insertAdjacentElement("beforeend", removeButtonItem);
+
+    // Adicionando a li (novoItem) na ul (lista)
+    lista.appendChild(novoItem);
+
+    // Adicionando o event listener para remover o novo item, caso haja um clique sobre ele
+    //(veja a função removerItem abaixo)
+    removeButtonItem.addEventListener("click", removerItem);
+
+    // Limpando o conteúdo do input quando o item é adicionado
+    input.value = "";
+}
+});
+
+// Função chamada quando ocorre o evento de clique sobre um item
+function removerItem(event) {
+    lista.removeChild(event.target.parentElement);
+}
+
+Observe que boa parte do script ainda é idêntico ao anterior; 
+a diferença está dentro do escopo do else. Os comentários do código irão te ajudar a entender a implementação
+em detalhes. Resumidamente, estamos criando uma li e, depois, cada um dos elementos
+que estarão dentro dela (input, span e button), que elencamos anteriormente.
+
+Em seguida, inserimos um texto no span e no button, 
+além de adicionarmos um atributo no input para que o seu tipo seja checkbox.
+
+O método setAttribute deve ser novo para você. Uma vez que você crie um elemento ou obtenha um elemento HTML, 
+é possível adicionar uma propriedade nele (tag) por meio desse método. Nesse caso, estamos adicionando
+o atributo type=checkbox. Você deve passar a chave do atributo no primeiro parâmetro do método, 
+e o seu valor como segundo parâmetro.
+
+Para inserir o checkbox, o span e o button dentro da li, utilizamos o método insertAdjacentElement. 
+Observe que o primeiro parâmetro desse método é a posição onde queremos inserir, 
+que definimos para ser antes do final da tag, ou seja, funciona como um appendChild 
+(mas acabamos de aprender mais um método). No segundo parâmetro, passamos o elemento que desejamos adicionar.
+
+O restante do escopo do else é o mesmo que já tínhamos no código anterior, 
+exceto pelo fato de que adicionamos o evento de remover a tarefa ao button e não mais à li, como era antes.
+
+Observe que temos mais uma mudança no nosso script: essa mudança está na função removerItem. 
+Não podemos apenas fazer lista.removeChild(event.target), como fazíamos antes, 
+pois o event.target traz a referência do button, uma vez que o evento de remover está nele. 
+No entanto, o button não é filho da lista, mas filho da li, e a li é filho da lista (ul).
+
+O que queremos que aconteça ao clicarmos no botão de “Remover”? 
+Queremos que a li seja removida, e não apenas o button, concorda? 
+Sendo assim, precisamos remover da lista (ul) o elemento pai do button, que é a li. 
+Para isso, utilizamos o atributo parentElement, que retorna o elemento pai do elemento que o chama. 
+Tudo certo! Nossa lista está mais completa!
+
+REMOVENDO UM EVENT LISTENER
+
+Método removeEventListener, que deve receber os mesmos parâmetros que foram passados no addEventListener, 
+ou seja, o tipo do evento e a mesma função de disparo.
+
+
+
+
+
