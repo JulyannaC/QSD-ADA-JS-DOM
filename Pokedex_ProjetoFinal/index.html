@@ -12,13 +12,14 @@
     <div class="container">
         <div class="logo-wrapper">
             <img src="pokeball.svg" alt="pokeball" />
-            <h1>Pokedex</h1>
+            <h1>Pokédex</h1>
         </div>
     </div>
     <div class="search-container">
         <label for="search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="search" placeholder="Enter Pokemon name or ID">
+            <input type="text" id="search" placeholder="Insira o nome ou ID">
+            <button id="search-button">Buscar</button>
         </label>
     </div>
 
@@ -32,9 +33,16 @@
         </div>
     </div>
     
-
     <div class="poke-container" id="poke-container"></div>
+
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-error-modal" class="close">×</span>
+            <p id="error-message"></p>
+        </div>
+    </div>
     
-    <script src="script3.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
