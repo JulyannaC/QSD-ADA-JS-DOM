@@ -35,6 +35,10 @@ mensagens de erro apropriadas.
 ![image](https://github.com/JulyannaC/QSD-ADA-JS-DOM/assets/128107511/cc0d5a55-f579-4ae4-a237-2f21113f0674)
 <sub> Modal de Favoritos </sub>
 
+https://github.com/JulyannaC/QSD-ADA-JS-DOM/assets/128107511/a9f89bec-450c-444b-b744-2a833034de5f
+
+
+
 ### IMPORTANTE!
 Gostaria de deixar aqui meus agradecimentos ao Professor Francisco Fagundes por todo conhecimento compartilhado nesse módulo,
 sua dedicação à nossa aprendizagem, pela orientação nas aulas, exercícios, no projeto e por criar um ambiente de aprendizagem
