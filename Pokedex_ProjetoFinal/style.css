@@ -16,18 +16,18 @@ body {
     background: linear-gradient(90deg, rgba(252,252,252,0) 0%, rgba(128,116,108,1) 0%, rgba(255,235,251,1) 0%, rgba(175,102,58,1) 0%, rgba(255,181,152,1) 0%, rgba(255,153,76,1) 0%, rgba(255,199,27,1) 100%, rgba(255,162,40,1) 100%, rgba(172,171,171,1) 100%);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinha no topo */
-    align-items: flex-start; /* Inicia da esquerda */
-    height: 100vh; /* Ocupa 100% da altura da tela */
-    padding: 10px; /* Adiciona algum espaço para evitar que os elementos fiquem muito próximos às bordas */
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    height: 100vh; 
+    padding: 10px; 
 }
 
 #search {
     padding: 10px;
-    margin-bottom: 5px; /* Adicionado para separar do botão de busca */
+    margin-bottom: 5px; 
     border: 2px solid rgb(7, 1, 41);
     border-radius: 10px;
-    margin-left: 5px; /* Espaçamento entre o ícone e o input */
+    margin-left: 5px; 
 }
 
 .search-container {
@@ -46,23 +46,22 @@ body {
     margin-right: 5px;
 }
 
-/* Mudar a cor do ícone */
 .fa-magnifying-glass {
-    color: white; /* Substitua #ff0000 pela cor desejada */
-    font-size: 25px; /* Substitua 24px pelo tamanho desejado */
+    color: white; 
+    font-size: 25px; 
 }
 
 #search-button {
     padding: 4px;
     cursor: pointer;
-    margin-left: 10px; /* Adiciona uma margem à esquerda para afastar do input */
+    margin-left: 10px; 
     border: 2px solid rgb(7, 1, 41);
-    border-radius: 5px;/* Arredonda as bordas do botão */
-    transition: background-color 0.3s ease; /* Adiciona uma transição suave ao mudar a cor de fundo */
+    border-radius: 5px;
+    transition: background-color 0.3s ease; 
 }
 
 #search-button:hover {
-    background-color: rgb(7, 1, 41); /* Muda a cor de fundo quando o mouse passa sobre o botão */
+    background-color: rgb(7, 1, 41); 
     color: white;
     font-weight: bold;
 }
@@ -190,14 +189,14 @@ h1 {
 }
 
 #favorites-button {
-    position:absolute; /* Fixa o botão no canto superior direito */
-    margin-top: 50px; /* Distância do topo da página */
-    right: 8px; /* Distância da direita da página */
-    border-radius: 10px; /* Deixa o botão arredondado */
-    padding: 10px 20px; /* Espaçamento interno do botão */
+    position:absolute; 
+    margin-top: 50px; 
+    right: 8px; 
+    border-radius: 10px; 
+    padding: 10px 20px; 
     cursor: pointer;
     border: 2px solid rgb(7, 1, 41);
-    transition: background-color 0.3s ease; /* Adiciona uma transição suave ao mudar a cor de fundo */
+    transition: background-color 0.3s ease; 
 }
 
 #favorites-button:hover {
@@ -263,12 +262,9 @@ h1 {
 }
 
 .remove-button {
-    color: red; /* Muda a cor do ícone para vermelho */
-    margin-left: 10px; /* Adiciona um espaço à esquerda do botão */
+    color: red; 
+    margin-left: 10px; 
 }
-
-/*❗  checkbox favorite */
-/* Hide the browser's default checkbox */
 
 .input-favorite{
     position: absolute;
